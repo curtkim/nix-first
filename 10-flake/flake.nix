@@ -8,8 +8,10 @@
 
   outputs = {self, nixpkgs, flake-utils}: 
     flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackges.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
     in {
+      packages.default = pkgs.hello;
+
       devShells.default = pkgs.mkShell {
 	packages = [pkgs.nodejs];
 	shellHook = ''
