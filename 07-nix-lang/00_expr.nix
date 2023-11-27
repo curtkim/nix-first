@@ -27,4 +27,5 @@
   my_function_call = let 
                      f = x: x+1;
                      in f 1;
+  gen_list = builtins.genList (x: x * x) 5;
 }
