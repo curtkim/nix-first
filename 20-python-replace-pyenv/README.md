@@ -1,4 +1,6 @@
-https://www.codyhiar.com/blog/replace-pyenv-with-a-nix-flake/
+## reference
+- https://www.codyhiar.com/blog/replace-pyenv-with-a-nix-flake/
+- https://github.com/NixOS/nixpkgs/issues/230214
 
 ## howto
 
