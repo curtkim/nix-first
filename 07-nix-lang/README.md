@@ -2,6 +2,11 @@
 
     nix eval --file 00_expr.nix
     nix eval --expr 'builtins.toString'
+    nix eval --expr 'builtins.toString 123'
+    nix eval --expr 'builtins.attrNames {a=1; b=2;}'
+    nix eval --expr '{a=1; b=2;}' --apply builtins.attrNames
+
+
 
 ## Derivation
 - The Nix language is used to describe derivations.
