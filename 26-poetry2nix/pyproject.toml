@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "hello-poetry2nix"
+version = "0.1.0"
+description = "Sample program to be packaged with poetry2nix."
+authors = ["Wilson E. Husin <wilson@husin.dev>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fire = "^0.5.0"
+comtypes = "^1.4.1"
+
+[tool.poetry.scripts]
+hello_poetry2nix = "hello_poetry2nix:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

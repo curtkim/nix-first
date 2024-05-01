@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "imageapp"
+version = "0.1.0"
+description = ""
+authors = ["curtkim <iamteri@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+pillow = "^10.3.0"
+flask = "^3.0.3"
+
+[tool.poetry.scripts]
+imgapp = 'imgapp:main'
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
