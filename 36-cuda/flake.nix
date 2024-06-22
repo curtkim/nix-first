@@ -6,7 +6,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
   };
 
-  outputs = inputs@{ flake-parts, ... }:
+  outputs = inputs@{ flake-parts, nixpkgs, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         # To import a flake module
@@ -17,6 +17,14 @@
       ];
       systems = [ "x86_64-linux" ];
       perSystem = { config, self', inputs', pkgs, system, ... }: {
+        _module.args.pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          config.cudaSupport = true;
+          config.cudaCapabilities = [ "8.6" ];    # tine-cuda-nn build time reduced
+          config.cudaEnableForwardCompat = false;
+        };
+
         # The `callPackage` automatically fills the parameters of the function
         # in package.nix with what's inside the `pkgs` attribute.
         packages = {
