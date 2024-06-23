@@ -2,7 +2,7 @@
   description = "Rust-Nix";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     rust-crate2nix = {
       url = "github:kolloch/crate2nix";
@@ -51,7 +51,7 @@
         default = packages.rustnix;
       };
       devShells.default = pkgs.mkShell {
-		    buildInputs = [pkgs.rustc];
+        buildInputs = [pkgs.rustc];
       };
     };
   };
