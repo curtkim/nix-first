@@ -26,6 +26,7 @@
             boost
             catch2
             cmake
+            clang-tools
           ];
         };
         devShells.clang = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
