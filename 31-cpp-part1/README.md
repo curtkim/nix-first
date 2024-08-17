@@ -5,8 +5,13 @@ https://nixcademy.com/2023/10/31/cpp-with-nix-in-2023-part-1-shell/
 
     nix flake init -t github:hercules-ci/flake-parts
 
+    nix develop
     cmake -B build -S .
     cmake --build build
+
+## howto in gcc14
+
+    nix develop .#gcc14
 
 ## update the toolchain
 

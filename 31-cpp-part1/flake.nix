@@ -3,7 +3,7 @@
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
   };
 
   outputs = inputs@{ flake-parts, ... }:
@@ -16,25 +16,28 @@
 
       ];
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
-        # Per-system attributes can be defined here. The self' and inputs'
-        # module parameters provide easy access to attributes of the same
-        # system.
-
-        devShells.default = pkgs.mkShell {
+      perSystem = { config, self', inputs', pkgs, system, ... }: let 
           packages = with pkgs; [
             boost
             catch2
             cmake
             clang-tools
           ];
+        in {
+        # Per-system attributes can be defined here. The self' and inputs'
+        # module parameters provide easy access to attributes of the same
+        # system.
+
+        devShells.default = pkgs.mkShell {
+          packages = packages;
         };
+
+        devShells.gcc14 = pkgs.mkShell.override { stdenv = pkgs.gcc14Stdenv; } {
+          packages = packages;
+        };
+
         devShells.clang = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
-          packages = with pkgs; [
-            boost
-            catch2
-            cmake
-          ];
+          packages = packages;
         };
       };
 
